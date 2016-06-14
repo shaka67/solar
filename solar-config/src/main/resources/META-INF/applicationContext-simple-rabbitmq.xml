@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+	<bean id="connectionFactory" class="com.rabbitmq.client.ConnectionFactory">
+		<property name="host" value="${sync.rabbitmq.host}" />
+		<property name="port" value="${sync.rabbitmq.port}" />
+		<property name="virtualHost" value="${sync.rabbitmq.vhost}" />
+		<property name="username" value="${sync.rabbitmq.username}" />
+		<property name="password" value="${sync.rabbitmq.password}" />
+		<property name="requestedHeartbeat" value="${sync.rabbitmq.connection.heartbeat}" />
+		<property name="connectionTimeout" value="${sync.rabbitmq.connection.timeout}" />
+	</bean>
+	
+	<bean id="messageProcessorContainerConfig" class="com.ouer.solar.rabbitmq.MessageProcessorContainerConfig">
+		<property name="prefetchCount" value="${sync.prefetch.count}" />
+		<property name="concurrentConsumers" value="${sync.concurrent.consumers}" />
+		<property name="receiveTimeout" value="${sync.receive.timeout}" />
+		<property name="recoveryInterval" value="${sync.recovery.interval}" />
+		<property name="startupTimeout" value="${sync.startup.timeout}" />
+		<property name="shutdownTimeout" value="${sync.shutdown.timeout}" />
+		<property name="defaultRequeueRejected" value="${sync.default.requeue.rejected}" />
+	</bean>
+
+</beans>

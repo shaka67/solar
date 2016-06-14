@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.sms.db.SmsConfigMapper">
+
+	<resultMap id="sms_config" type="com.ouer.solar.config.sms.SmsConfig">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="driver" property="driver" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="datasource_class" property="datasourceClass" jdbcType="VARCHAR" />
+		<result column="datasource_props" property="datasourceProps" jdbcType="VARCHAR" />
+
+		<result column="sms_service_objects" property="smsServiceObjects" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		app_id, driver, url, username, password, datasource_class, datasource_props, sms_service_objects
+	</sql>
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.sms.SmsConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sms_config (
+		app_id, driver, url, username, password, datasource_class, datasource_props, sms_service_objects
+		, created_at, updated_at
+		)
+		values (
+		#{appId}, #{driver}, #{url}, #{username}, #{password}, #{datasourceClass}, #{datasourceProps}, #{smsServiceObjects},
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.sms.SmsConfig">
+		update sms_config
+		<set>
+			<if test="driver != null">
+				driver = #{driver}, 
+			</if>
+			<if test="url != null">
+				url = #{url}, 
+			</if>
+			<if test="username != null">
+				username = #{username}, 
+			</if>
+			<if test="password != null">
+				password = #{password}, 
+			</if>
+			<if test="datasourceClass != null">
+				datasource_class = #{datasourceClass}, 
+			</if>
+			<if test="datasourceProps != null">
+				datasource_props = #{datasourceProps}, 
+			</if>
+
+			<if test="smsServiceObjects != null">
+				sms_service_objects = #{smsServiceObjects}, 
+			</if>
+			
+			updated_at = now()
+		</set>
+		where app_id = #{appId}
+	</update>
+	
+	<select id="select" resultMap="sms_config">
+		select <include refid="Base_Column_List"/> from sms_config where app_id = #{appId}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*)  from sms_config where app_id = #{appId} ]]>
+	</select> 
+	
+	<delete id="delete">
+    	delete from sms_config where app_id = #{appId}
+  	</delete>
+  	
+  	<select id="selectAll" resultMap="sms_config">
+		select <include refid="Base_Column_List"/> from sms_config
+	</select>
+	
+</mapper>

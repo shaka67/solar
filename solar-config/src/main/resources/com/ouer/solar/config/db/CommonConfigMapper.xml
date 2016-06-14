@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.db.CommonConfigMapper">
+	
+	<resultMap id="common_config" type="com.ouer.solar.config.CommonConfig">
+<!-- 		<result column="app_id" property="appId" /> -->
+		<result column="config_type" property="configType" />
+		<result column="thirdparty" property="thirdparty" />
+		<result column="config_options" property="configOptions" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		thirdparty, config_options
+	</sql>
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.CommonConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into dynamic_${configType} (
+		thirdparty, config_options, created_at, updated_at
+		)
+		values (
+		#{thirdparty},
+		#{configOptions},
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.CommonConfig">
+		update dynamic_${configType}
+		<set>
+			<if test="configOptions != null">
+				config_options = #{configOptions,jdbcType=VARCHAR}, updated_at = now()
+			</if>
+		</set>
+		where thirdparty = #{thirdparty}
+	</update>
+	
+	<select id="select" resultMap="common_config">
+		select <include refid="Base_Column_List"/>, '${configType}' as config_type from dynamic_${configType} where 
+		thirdparty = #{thirdparty}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*) from dynamic_${configType} where thirdparty = #{thirdparty} ]]>
+	</select> 
+	
+</mapper>

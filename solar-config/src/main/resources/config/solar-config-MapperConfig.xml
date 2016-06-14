@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<mappers>
+		<mapper resource="com/ouer/solar/config/rabbitmq/db/RabbitMQConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/jobserver/db/JobServerSpecialConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/mail/db/MailConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/mogilefs/db/MogilefsConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/search/db/SearchConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/sms/db/SmsConfigMapper.xml" />
+		
+		<mapper resource="com/ouer/solar/config/db/CommonConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/db/DynamicConfigMapper.xml" />
+		
+		<mapper resource="com/ouer/solar/config/image/db/ImageConfigMapper.xml" />
+		<mapper resource="com/ouer/solar/config/push/db/PushConfigMapper.xml" />
+	</mappers>
+</configuration>

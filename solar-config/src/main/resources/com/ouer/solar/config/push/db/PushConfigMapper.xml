@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.push.db.PushConfigMapper">
+
+	<resultMap id="push_config" type="com.ouer.solar.config.push.PushConfig">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="thirdparty" property="thirdparty" jdbcType="VARCHAR" />
+		<result column="package_name" property="packageName" jdbcType="VARCHAR" />
+		<result column="ios_secret" property="iosSecret" jdbcType="VARCHAR" />
+		<result column="android_secret" property="androidSecret" jdbcType="VARCHAR" />
+		<result column="ios_env" property="iosEnv" jdbcType="VARCHAR" />
+		<result column="android_env" property="androidEnv" jdbcType="VARCHAR" />
+		<result column="notify_type" property="notifyType" jdbcType="INTEGER" />
+		<result column="pass_through" property="passThrough" jdbcType="INTEGER" />
+		<result column="retries" property="retries" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		app_id, thirdparty, ios_secret, android_secret, ios_env, android_env, notify_type, pass_through, retries
+	</sql>
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.push.PushConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into push_config (
+		app_id, thirdparty, package_name, ios_secret, android_secret, ios_env, android_env, notify_type, pass_through, retries,
+		created_at, updated_at
+		)
+		values (
+		#{appId}, #{thirdparty}, #{packageName}, #{iosSecret}, #{androidSecret}, #{iosEnv}, #{androidEnv}, #{notifyType},
+		#{passThrough}, #{retries},
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.push.PushConfig">
+		update push_config
+		<set>
+			<if test="thirdparty != null">
+				thirdparty = #{thirdparty}, 
+			</if>
+			<if test="packageName != null">
+				package_name = #{packageName}, 
+			</if>
+			<if test="iosSecret != null">
+				ios_secret = #{iosSecret}, 
+			</if>
+			<if test="androidSecret != null">
+				android_secret = #{androidSecret}, 
+			</if>
+			<if test="iosEnv != null">
+				ios_env = #{iosEnv}, 
+			</if>
+			<if test="androidEnv != null">
+				android_env = #{androidEnv}, 
+			</if>
+			<if test="notifyType >= 0">
+				notify_type = #{notifyType}, 
+			</if>
+			<if test="passThrough >= 0">
+				pass_through = #{passThrough}, 
+			</if>
+			<if test="retries >= 0">
+				retries = #{retries}, 
+			</if>
+			updated_at = now()
+		</set>
+		where app_id = #{appId}
+	</update>
+	
+	<select id="select" resultMap="push_config">
+		select <include refid="Base_Column_List"/> from push_config where app_id = #{appId}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*)  from push_config where app_id = #{appId} ]]>
+	</select> 
+	
+	<delete id="delete">
+    	delete from push_config where app_id = #{appId}
+  	</delete>
+  	
+  	<select id="selectAll" resultMap="push_config">
+		select <include refid="Base_Column_List"/> from push_config
+	</select>
+</mapper>

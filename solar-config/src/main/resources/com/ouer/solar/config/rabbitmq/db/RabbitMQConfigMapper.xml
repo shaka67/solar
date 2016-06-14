@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.rabbitmq.db.RabbitMQConfigMapper">
+	
+	<resultMap id="rabbitmq_config" type="com.ouer.solar.config.rabbitmq.RabbitMQConfig">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="host" property="host" jdbcType="VARCHAR" />
+		<result column="port" property="port" jdbcType="INTEGER" />
+		<result column="virtual_host" property="virtualHost" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="requested_heartbeat" property="requestedHeartbeat" jdbcType="INTEGER" />
+		<result column="connection_timeout" property="connectionTimeout" jdbcType="INTEGER" />
+		<result column="prefetch_count" property="prefetchCount" jdbcType="INTEGER" />
+		<result column="concurrent_consumers" property="concurrentConsumers" jdbcType="INTEGER" />
+		<result column="receive_timeout" property="receiveTimeout" jdbcType="BIGINT" />
+		<result column="recovery_interval" property="recoveryInterval" jdbcType="BIGINT" />
+		<result column="startup_timeout" property="startupTimeout" jdbcType="BIGINT" />
+		<result column="shutdown_timeout" property="shutdownTimeout" jdbcType="BIGINT" />
+		<result column="default_requeue_rejected" property="defaultRequeueRejected" jdbcType="BIT" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		app_id, host, port, virtual_host, username, password, requested_heartbeat, connection_timeout, prefetch_count, 
+		concurrent_consumers, receive_timeout, recovery_interval, startup_timeout, shutdown_timeout, default_requeue_rejected
+	</sql>
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.rabbitmq.RabbitMQConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into rabbitmq_config (
+		app_id, host, port, virtual_host, username, password, requested_heartbeat, connection_timeout, prefetch_count, 
+		concurrent_consumers, receive_timeout, recovery_interval, startup_timeout, shutdown_timeout, default_requeue_rejected, created_at, updated_at
+		)
+		values (
+		#{appId}, #{host}, #{port}, #{virtualHost}, #{username}, #{password}, #{requestedHeartbeat}, #{connectionTimeout}, #{prefetchCount}, 
+		#{concurrentConsumers}, #{receiveTimeout}, #{recoveryInterval}, #{startupTimeout}, #{shutdownTimeout}, #{defaultRequeueRejected},
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.rabbitmq.RabbitMQConfig">
+		update rabbitmq_config
+		<set>
+			<if test="host != null">
+				host = #{host}, 
+			</if>
+			<if test="port != 0">
+				host = #{port}, 
+			</if>
+			<if test="virtualHost != null">
+				virtual_host = #{virtualHost}, 
+			</if>
+			<if test="username != null">
+				username = #{username}, 
+			</if>
+			<if test="password != null">
+				password = #{password}, 
+			</if>
+			<if test="requestedHeartbeat != 0">
+				requested_heartbeat = #{requestedHeartbeat}, 
+			</if>
+			<if test="connectionTimeout != 0">
+				connection_timeout = #{connectionTimeout}, 
+			</if>
+			<if test="prefetchCount != 0">
+				prefetch_count = #{prefetchCount}, 
+			</if>
+			<if test="concurrentConsumers != 0">
+				concurrent_consumers = #{concurrentConsumers}, 
+			</if>
+			<if test="receiveTimeout != 0">
+				receive_timeout = #{receiveTimeout}, 
+			</if>
+			<if test="recoveryInterval != 0">
+				recovery_interval = #{recoveryInterval}, 
+			</if>
+			<if test="startupTimeout != 0">
+				startup_timeout = #{startupTimeout}, 
+			</if>
+			<if test="shutdownTimeout != 0">
+				shutdown_timeout = #{shutdownTimeout}, 
+			</if>
+			<if test="defaultRequeueRejected != null">
+				default_requeue_rejected = #{defaultRequeueRejected}, 
+			</if>
+			updated_at = now()
+		</set>
+		where app_id = #{appId}
+	</update>
+	
+	<select id="select" resultMap="rabbitmq_config">
+		select <include refid="Base_Column_List"/> from rabbitmq_config where app_id = #{appId}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*)  from rabbitmq_config where app_id = #{appId} ]]>
+	</select> 
+	
+	<delete id="delete">
+    	delete from rabbitmq_config where app_id = #{appId}
+  	</delete>
+  	
+  	<select id="selectAll" resultMap="rabbitmq_config">
+		select <include refid="Base_Column_List"/> from rabbitmq_config
+	</select>
+</mapper>

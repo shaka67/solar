@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.search.db.SearchConfigMapper">
+
+	<resultMap id="search_config" type="com.ouer.solar.config.search.SearchConfig">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="cluster_nodes" property="clusterNodes" jdbcType="VARCHAR" />
+		<result column="cluster_name" property="clusterName" jdbcType="VARCHAR" />
+		<result column="client_transport_sniff" property="clientTransportSniff" jdbcType="BIT" />
+		<result column="client_transport_ignore_name" property="clientTransportIgnoreClusterName" jdbcType="BIT" />
+		<result column="client_transport_ping_timeout" property="clientTransportPingTimeout" jdbcType="VARCHAR" />
+		<result column="client_transport_nodes_interval" property="clientTransportNodesSamplerInterval" jdbcType="VARCHAR" />
+		
+		<result column="dal_config_file" property="dalConfigFile" jdbcType="VARCHAR" />
+		<result column="driver" property="driver" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="datasource_class" property="datasourceClass" jdbcType="VARCHAR" />
+		<result column="datasource_props" property="datasourceProps" jdbcType="VARCHAR" />
+
+		<result column="index_definition_file" property="indexDefinitionFile" jdbcType="VARCHAR" />
+		<result column="result_definition_file" property="resultDefinitionFile" jdbcType="VARCHAR" />
+		<result column="search_definition_file" property="searchDefinitionFile" jdbcType="VARCHAR" />
+		
+		<result column="job_cron_expression" property="jobCronExpression" jdbcType="VARCHAR" />
+		<result column="term_filters" property="termFilters" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		app_id, cluster_nodes, cluster_name, client_transport_sniff, client_transport_ignore_name, 
+		client_transport_ping_timeout, client_transport_nodes_interval, dal_config_file, driver, url,
+		username, password, datasource_class, datasource_props, index_definition_file, 
+		result_definition_file, search_definition_file, job_cron_expression, term_filters
+	</sql>
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.search.SearchConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into search_config (
+		app_id, cluster_nodes, cluster_name, client_transport_sniff, client_transport_ignore_name, 
+		client_transport_ping_timeout, client_transport_nodes_interval, dal_config_file, driver, url,
+		username, password, datasource_class, datasource_props, index_definition_file, 
+		result_definition_file, search_definition_file, job_cron_expression, term_filters,
+		created_at, updated_at
+		)
+		values (
+		#{appId}, #{clusterNodes}, #{clusterName}, #{clientTransportSniff}, #{clientTransportIgnoreClusterName}, 
+		#{clientTransportPingTimeout}, #{clientTransportNodesSamplerInterval}, #{dalConfigFile}, #{driver}, #{url},
+		#{username}, #{password}, #{datasourceClass}, #{datasourceProps}, #{indexDefinitionFile}, 
+		#{resultDefinitionFile}, #{searchDefinitionFile}, #{jobCronExpression}, #{termFilters},
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.search.SearchConfig">
+		update search_config
+		<set>
+			<if test="clusterNodes != null">
+				cluster_nodes = #{clusterNodes}, 
+			</if>
+			<if test="clusterName != null">
+				cluster_name = #{clusterName}, 
+			</if>
+			<if test="clientTransportSniff != 0">
+				client_transport_sniff = #{clientTransportSniff}, 
+			</if>
+			<if test="clientTransportIgnoreClusterName != 0">
+				client_transport_ignore_name = #{clientTransportIgnoreClusterName}, 
+			</if>
+			<if test="clientTransportPingTimeout != null">
+				client_transport_ping_timeout = #{clientTransportPingTimeout}, 
+			</if>
+			<if test="clientTransportNodesSamplerInterval != null">
+				client_transport_nodes_interval = #{clientTransportNodesSamplerInterval}, 
+			</if>
+			
+			<if test="dalConfigFile != null">
+				dal_config_file = #{dalConfigFile}, 
+			</if>
+			<if test="driver != null">
+				driver = #{driver}, 
+			</if>
+			<if test="url != null">
+				url = #{url}, 
+			</if>
+			<if test="username != null">
+				username = #{username}, 
+			</if>
+			<if test="password != null">
+				password = #{password}, 
+			</if>
+			<if test="datasourceClass != null">
+				datasource_class = #{datasourceClass}, 
+			</if>
+			<if test="datasourceProps != null">
+				datasource_props = #{datasourceProps}, 
+			</if>
+
+			<if test="indexDefinitionFile != null">
+				index_definition_file = #{indexDefinitionFile}, 
+			</if>
+			<if test="resultDefinitionFile != null">
+				result_definition_file = #{resultDefinitionFile}, 
+			</if>
+			<if test="searchDefinitionFile != null">
+				search_definition_file = #{searchDefinitionFile}, 
+			</if>
+			
+			<if test="jobCronExpression != null">
+				job_cron_expression = #{jobCronExpression}, 
+			</if>
+			
+			<if test="termFilters != null">
+				term_filters = #{termFilters}, 
+			</if>
+			
+			updated_at = now()
+		</set>
+		where app_id = #{appId}
+	</update>
+	
+	<select id="select" resultMap="search_config">
+		select <include refid="Base_Column_List"/> from search_config where app_id = #{appId}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*)  from search_config where app_id = #{appId} ]]>
+	</select> 
+	
+	<delete id="delete">
+    	delete from search_config where app_id = #{appId}
+  	</delete>
+  	
+  	<select id="selectAll" resultMap="search_config">
+		select <include refid="Base_Column_List"/> from search_config
+	</select>
+	
+</mapper>

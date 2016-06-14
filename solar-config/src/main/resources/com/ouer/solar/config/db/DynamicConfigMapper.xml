@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.config.db.DynamicConfigMapper">
+	
+	<insert id="insert" parameterType="com.ouer.solar.config.DynamicConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into dynamic_${configType}_${thirdparty} (
+		app_id,
+		<foreach collection="configs.keys" item="key" separator=",">
+    		${key}    
+		</foreach>  
+		, created_at, updated_at)
+		values (
+		#{appId},
+		<foreach collection="configs.values" item="value" separator=",">
+    		#{value}    
+		</foreach>  
+		,
+		now(),
+		now()
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.ouer.solar.config.DynamicConfig">
+		update dynamic_${configType}_${thirdparty} set
+		<foreach collection="configs.keys" item="key" separator=",">
+            <if test="null != configs[key]">
+               ${key} = #{configs.${key},jdbcType=VARCHAR}
+            </if>
+        </foreach>
+        , updated_at = now()
+        WHERE app_id = #{appId}
+	</update>
+	
+	<select id="select" resultType="java.util.Map">
+		select
+		<foreach collection="config.configOptionArray" item="column" separator="," index="index">  
+      		${column}
+    	</foreach>  
+		from
+		dynamic_${config.configType}_${config.thirdparty} where app_id = #{appId}
+	</select>
+	
+<!-- 	<select id="selectAll" resultType="java.util.Map"> -->
+<!-- 		select -->
+<!-- 		<foreach collection="config.configOptionArray" item="column" separator="," index="index">   -->
+<!--       		${column} -->
+<!--     	</foreach>   -->
+<!-- 		from -->
+<!-- 		dynamic_${config.configType}_${config.thirdparty} -->
+<!-- 	</select> -->
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*) from dynamic_${configType}_${thirdparty} where app_id = #{appId} ]]>
+	</select> 
+	
+</mapper>
