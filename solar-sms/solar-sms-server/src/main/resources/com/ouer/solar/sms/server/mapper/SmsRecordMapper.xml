@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.sms.server.mapper.SmsRecordMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ouer.solar.sms.model.SmsRecord" >
+    <id column="id" property="id" />
+    <result column="channel_id" property="channelId" />
+    <result column="content" property="content"  />
+    <result column="source" property="source" />
+    <result column="third_batch_id" property="thirdBatchId" />
+     <result column="third_id" property="thirdId" />
+  </resultMap>
+  
+  
+  <insert id="save" parameterType="com.ouer.solar.sms.model.SmsRecord" >
+	<selectKey resultType="long" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+	</selectKey>
+    insert into sms_send_record (channel_id,  content,  created_at, updated_at, third_batch_id,third_id)
+    values (#{channelId}, #{content,jdbcType=VARCHAR}, now(),now(),#{thirdBatchId,jdbcType=VARCHAR},#{thirdId,jdbcType=VARCHAR})
+  </insert>
+  	
+  <update id="update" parameterType="com.ouer.solar.sms.model.SmsRecord">
+  		UPDATE sms_send_record SET updated_at = now() WHERE third_batch_id = #{thirdBatchId,jdbcType=VARCHAR} and third_id=#{thirdId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByThirdBatchId" resultMap="BaseResultMap">
+  		select id,channel_id, content, created_at, updated_at, third_batch_id,third_id from sms_send_record where third_batch_id = #{thirdBatchId,jdbcType=VARCHAR} and third_id=#{thirdId,jdbcType=VARCHAR}
+  </select>
+</mapper>

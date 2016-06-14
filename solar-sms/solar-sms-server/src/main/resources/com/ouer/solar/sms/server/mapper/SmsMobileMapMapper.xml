@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.sms.server.mapper.SmsMobileMapMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ouer.solar.sms.model.SmsMobileMap" >
+    <id column="id" property="id" />
+    <result column="mobile" property="mobile"  />
+    <result column="status" property="status" />
+    <result column="sms_send_record_id" property="smsSendRecordId" />
+  </resultMap>
+  
+  
+  <insert id="save" parameterType="java.util.List" >
+	<selectKey resultType="long" keyProperty="idRaw">
+		SELECT LAST_INSERT_ID() AS id
+	</selectKey>
+    insert into sms_mobile_map (mobile, status, sms_send_record_id, created_at, updated_at)
+    values 
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.mobile}, #{item.status}, #{item.smsSendRecordId}, now(), now())
+    </foreach> 
+    
+  </insert>
+  
+  <update id="update" parameterType="com.ouer.solar.sms.model.SmsMobileMap">
+  	   UPDATE sms_mobile_map set 
+                  status=#{status}
+                WHERE sms_send_record_id = #{smsSendRecordId} and mobile = #{mobile}
+  </update>
+  
+  <select id="selectByRecordId" resultMap="BaseResultMap">
+  	select id,mobile, status, sms_send_record_id from sms_mobile_map where sms_send_record_id = #{smsSendRecordId}
+  </select>
+  
+</mapper>
