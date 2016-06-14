@@ -1,0 +1,1 @@
+java -jar ../solar-location-server-2.0.0.jar
