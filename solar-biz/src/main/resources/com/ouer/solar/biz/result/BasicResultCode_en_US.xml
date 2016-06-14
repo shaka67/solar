@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource-bundle name="BasicResultCode">
+	<message id="SUCCESS">
+		<data>success</data>
+		<code>1</code>
+	</message>
+	<message id="ERROR">
+		<data>error</data>
+		<code>-1</code>
+	</message>
+	<message id="INVALID_PARAM">
+		<data>invalid parameters</data>
+		<code>2</code>
+	</message>
+	<message id="GENERIC_FAILURE">
+		<data>generic failure</data>
+		<code>3</code>
+	</message>
+	<message id="SERVICE_FAILURE">
+		<data>service failure</data>
+		<code>4</code>
+	</message>
+	<message id="DAO_FAILURE">
+		<data>dao failure</data>
+		<code>5</code>
+	</message>
+	<message id="BIZ_FAILURE">
+		<data>business failure</data>
+		<code>6</code>
+	</message>
+</resource-bundle>

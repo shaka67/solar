@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+<resource-bundle name="ResultCode">
+	<message id="CREATE_REPORT">
+		<data>创建报告信息记录</data>
+		<code>0</code>
+	</message>
+	<message id="REPORT_FILE_RECORD">
+		<data>创建报告文件记录</data>
+		<code>1</code>
+	</message>
+	<message id="CUSTOM_REPORT_VIEW">
+		<data>创建定制报告视图</data>
+		<code>2</code>
+	</message>
+	<message id="STANDARD_REPORT_VIEW">
+		<data>创建标准报告视图</data>
+		<code>3</code>
+	</message>
+	<message id="STANDARD_GROUP_VIEW">
+		<data>创建标准报告推广组视图</data>
+		<code>4</code>
+	</message>
+	<message id="STANDARD_PLAN_VIEW">
+		<data>创建标准报告推广计划视图</data>
+		<code>5</code>
+	</message>
+	<message id="STANDARD_ACCOUNT_VIEW">
+		<data>创建标准报告推账户视图</data>
+		<code>6</code>
+	</message>
+	<message id="CSV_IMPORT">
+		<data>导出CSV文件</data>
+		<code>7</code>
+	</message>
+	<message id="SEND_DOWNLOAD_MAIL">
+		<data>发送下载邮件</data>
+		<code>8</code>
+	</message>
+	<message id="SEND_REMOVED_MAIL">
+		<data>发送删除邮件</data>
+		<code>9</code>
+	</message>
+	<message id="UPDATE_RECORD">
+		<data>更新数据记录</data>
+		<code>10</code>
+	</message>
+	<message id="PIPELINE_FAIL">
+		<data>流程处理失败</data>
+		<code>11</code>
+	</message>
+	<message id="DYNAMIC_PARAM">
+		<data>动态参数：{0}、{1}</data>
+		<code>12</code>
+	</message>
+</resource-bundle>

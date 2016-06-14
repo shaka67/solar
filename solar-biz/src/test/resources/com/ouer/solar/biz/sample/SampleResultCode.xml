@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GB2312"?>
+<resource-bundle name="ResultCode">
+    <message id="SUCCESS">
+        <data>成功执行命令</data>
+        <code>1</code>
+    </message>
+    <message id="GENERIC_FAILURE">
+        <data>执行命令失败</data>
+        <code>2</code>
+    </message>
+    <message id="SERVICE_FAILURE">
+        <data>执行服务操作失败</data>
+        <code>3</code>
+    </message>
+    <message id="DAO_FAILURE">
+        <data>执行数据操作失败</data>
+        <code>4</code>
+    </message>
+</resource-bundle>

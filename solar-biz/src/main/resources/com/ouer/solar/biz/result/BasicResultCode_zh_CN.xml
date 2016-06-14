@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GB2312"?>
+<resource-bundle name="BasicResultCode">
+	<message id="SUCCESS">
+		<data>成功</data>
+		<code>1</code>
+	</message>
+	<message id="ERROR">
+		<data>失败</data>
+		<code>-1</code>
+	</message>
+	<message id="INVALID_PARAM">
+		<data>参数不合法</data>
+		<code>2</code>
+	</message>
+	<message id="GENERIC_FAILURE">
+		<data>未预料异常</data>
+		<code>3</code>
+	</message>
+	<message id="SERVICE_FAILURE">
+		<data>服务错误</data>
+		<code>4</code>
+	</message>
+	<message id="DAO_FAILURE">
+		<data>数据层错误</data>
+		<code>5</code>
+	</message>
+	<message id="BIZ_FAILURE">
+		<data>业务错误</data>
+		<code>6</code>
+	</message>
+</resource-bundle>
