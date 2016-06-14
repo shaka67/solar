@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+	<!-- jmx -->
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean" />
+	
+	<bean id="basisExporter" class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="net.sourceforge.mx4j:name=httpAdaptor" value-ref="httpAdaptor" />
+				<entry key="solar:name=AppInfo" value-ref="appInfo" />
+				<entry key="solar:name=JVMMemory" value-ref="jvmMemory" />
+				<entry key="solar:name=TransactionStatisticer"
+					value-ref="transactionStatisticer" />
+				<entry key="solar:name=ThreadStatisticer" value-ref="threadStatisticer" />
+				<entry key="solar:name=ClassLoadingStatisticer"
+					value-ref="classLoadingStatisticer" />
+				<entry key="solar:name=GCStatisticer" value-ref="gcStatisticer" />
+				<entry key="solar:name=OS" value-ref="OS" />
+				<entry key="solar:name=Runtime" value-ref="runtime" />
+				
+				<entry key="solar:name=RabbitMQRuntimeChanger" value-ref="rabbitMQRuntimeChanger" />
+				<entry key="solar:name=RabbitMQClientRuntimeChanger" value-ref="rabbitMQClientRuntimeChanger" />
+				<entry key="solar:name=RabbitMQServerRuntimeChanger" value-ref="rabbitMQServerRuntimeChanger" />
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer" />
+		<property name="assembler">
+			<bean
+				class="org.springframework.jmx.export.assembler.SimpleReflectiveMBeanInfoAssembler" />
+		</property>
+	</bean>
+
+	<bean id="httpAdaptor" class="mx4j.tools.adaptor.http.HttpAdaptor">
+		<property name="processor">
+			<bean id="xsltProcessor" class="mx4j.tools.adaptor.http.XSLTProcessor" />
+		</property>
+		<property name="port" value="${mx4j.http.adaptor.port}" />
+		<property name="host" value="${mx4j.http.adaptor.host}" />
+		<property name="authenticationMethod" value="${mx4j.authentication.method}" />
+	</bean>
+
+	<bean id="mx4jService" class="com.ouer.solar.jmx.MBeanHttpAdaptor"
+		lazy-init="false" init-method="start" destroy-method="stop">
+		<constructor-arg index="0" ref="httpAdaptor"/>    
+    	<constructor-arg index="1" value="${mx4j.authentication.username}"/>
+    	<constructor-arg index="2" value="${login.password}"/>
+	</bean>
+
+</beans>
