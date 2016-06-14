@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>solar-jobclient</artifactId>
+  <packaging>jar</packaging> 
+  <name>solar-jobclient</name>
+  
+  <parent>
+    <groupId>com.ouer</groupId>
+    <artifactId>solar-job</artifactId>
+    <version>2.0.0</version>
+  </parent>
+  
+  <dependencies>
+  	<dependency>
+	  <groupId>com.ouer</groupId>
+	  <artifactId>solar-utils</artifactId>
+	</dependency>
+  	<dependency>
+	  <groupId>com.ouer</groupId>
+	  <artifactId>solar-dynamic-rabbitmq</artifactId>
+	</dependency>
+	<dependency>
+	  <groupId>com.ouer</groupId>
+	  <artifactId>solar-jmx</artifactId>
+	  <scope>test</scope>
+	</dependency>
+  </dependencies>
+  
+  <distributionManagement>
+		<repository>
+			<id>qianfan-releases</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>qianfan-snapshots</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
