@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+    <results>        
+        <result id="1" indexId="1" name="qf_product_all">
+            <fields>
+            	<field name="id" />
+				<field name="shopId" />
+				<field name="goodsNum" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="originalPrice" />
+				<field name="counterPrice" />
+				<field name="price" />
+				<field name="amount" />
+				<field name="status" />
+				<field name="sales" />
+				<field name="imgUrl" />
+				<field name="onsaleAt" />
+				<field name="instockAt" />
+				<field name="forsaleAt" />
+				<field name="createdAt" />
+				<field name="updatedAt" />
+				<field name="archive" />
+				<field name="domain" />
+<!-- 				<field name="terms" /> -->
+            </fields>
+        </result>
+    </results>
+</definition>

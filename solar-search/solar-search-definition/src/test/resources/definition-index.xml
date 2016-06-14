@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+    <indexes>        
+        <index id="1" index="qf" type="product" name="product_index" preIndex="true" _id="id">
+        	<fields>
+        		<field name="id" type="integer" index="not_analyzed" store="yes" />
+				<field name="shopId" index="not_analyzed" />
+				<field name="goodsNum" index="not_analyzed" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="originalPrice" type="double" index="not_analyzed" />
+				<field name="counterPrice" type="double" index="not_analyzed" />
+				<field name="price" type="double" index="not_analyzed" />
+				<field name="amount" type="integer" index="not_analyzed" />
+				<field name="status" type="integer" index="not_analyzed" />
+				<field name="sales" type="integer" index="not_analyzed" />
+				<field name="imgUrl" index="not_analyzed" />
+				<field name="onsaleAt" type="date" index="not_analyzed" />
+				<field name="instockAt" type="date" index="not_analyzed" />
+				<field name="forsaleAt" type="date" index="not_analyzed" />
+				<field name="createdAt" type="date" index="not_analyzed" />
+				<field name="updatedAt" type="date" index="not_analyzed" />
+				<field name="archive" type="boolean" index="not_analyzed" />
+				<field name="domain" type="integer" index="not_analyzed" />
+				<field name="categories" index="not_analyzed" />
+				<field name="tags" index="not_analyzed" />
+				<field name="attributes" index="not_analyzed" />
+            </fields>
+        </index>
+    </indexes>
+</definition>

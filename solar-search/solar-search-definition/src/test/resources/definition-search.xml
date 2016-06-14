@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+	<searches>
+		<search id="1" resultId="1" name="search_qf_product_sort_by_score">
+			<fields>
+				<field name="name" boost="3.0" boolType="should" queryType="match"/>
+				<field name="subName" boost="2.0" boolType="should" queryType="match"/>
+			</fields>
+			
+			<aggregations>
+				<aggregation type="terms" name="categories-term" field="categories" />
+				<aggregation type="terms" name="tags-term" field="tags" />
+				<aggregation type="terms" name="attributes-term" field="attributes" />
+			</aggregations>
+		</search>
+		
+		<search id="2" resultId="1" name="search_qf_product_sort_by_price">
+			<fields>
+				<field name="name" boost="3.0" boolType="should" queryType="match"/>
+				<field name="subName" boost="2.0" boolType="should" queryType="match"/>
+			</fields>
+			
+			<sorts>
+				<sort name="price" order="desc" />
+			</sorts>
+			
+			<aggregations>
+				<aggregation type="terms" name="status-term" field="status" />
+			</aggregations>
+		</search>
+		
+		<search id="3" resultId="1" name="product_terms_sort_by_price">
+			<fields>
+				<field name="categories" boolType="must" queryType="term"/>
+			</fields>
+			
+			<sorts>
+				<sort name="price" order="asc" />
+			</sorts>
+			
+			<aggregations>
+				<aggregation type="terms" name="status-term" field="status" />
+			</aggregations>
+		</search>
+		
+	</searches>
+</definition>
