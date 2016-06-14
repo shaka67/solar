@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+	<indexes>
+		<index id="2" index="c2c" type="product_sku" name="product_sku_index"
+			preIndex="true" _id="id">
+			<fields>
+				<field name="id" type="integer" index="not_analyzed" store="yes" />
+				<field name="spec" index="not_analyzed" />
+				<field name="originalPrice" type="integer" index="not_analyzed" />
+				<field name="counterPrice" type="integer" index="not_analyzed" />
+				<field name="price" type="integer" index="not_analyzed" />
+				<field name="discountPrice" type="integer" index="not_analyzed" />
+				<field name="amount" type="integer" index="not_analyzed" />
+				<field name="sales" type="integer" index="not_analyzed" />
+				<field name="imgUrl" index="not_analyzed" />
+				<field name="sort" type="integer" index="not_analyzed" />
+				<field name="createdAt" type="date" index="not_analyzed" />
+				<field name="updatedAt" type="date" index="not_analyzed" />
+				<field name="archive" type="boolean" index="not_analyzed" />
+				<field name="productId" type="integer" index="not_analyzed" />
+				<field name="shopId" type="integer" index="not_analyzed" />
+				<field name="productGoodsNum" index="not_analyzed" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="productOriginalPrice" type="integer" index="not_analyzed" />
+				<field name="productCounterPrice" type="integer" index="not_analyzed" />
+				<field name="productPrice" type="integer" index="not_analyzed" />
+				<field name="productAmount" type="integer" index="not_analyzed" />
+				<field name="status" type="integer" index="not_analyzed" />
+				<field name="productSales" type="integer" index="not_analyzed" />
+				<field name="productImgUrl" index="not_analyzed" />
+				<field name="productOnsaleAt" type="date" index="not_analyzed" />
+				<field name="productInstockAt" type="date" index="not_analyzed" />
+				<field name="productForsaleAt" type="date" index="not_analyzed" />
+				<field name="productCreatedAt" type="date" index="not_analyzed" />
+				<field name="productUpdatedAt" type="date" index="not_analyzed" />
+				<field name="productArchive" type="boolean" index="not_analyzed" />
+				<field name="domain" type="integer" index="not_analyzed" />
+				<field name="categoriesId" index="not_analyzed" />
+				<field name="attributesId" index="not_analyzed" />
+				<field name="tagsId" index="not_analyzed" />
+				<field name="categoriesName" index="not_analyzed" />
+				<field name="tagName" index="not_analyzed" />
+				<field name="attributesName" index="not_analyzed" />
+				<field name="categoriesIdNameParentId" index="not_analyzed" />
+				<field name="tagsIdNameParentId" index="not_analyzed" />
+				<field name="attributesIdNameParentId" index="not_analyzed" />
+				<field name="attributeValuesIdNameParentId" index="not_analyzed" />
+				<field name="recommend" index="not_analyzed" />
+				<field name="sortField" type="double" index="not_analyzed" />
+				<field name="logisticsFee" type="integer" index="not_analyzed" />
+			</fields>
+		</index>
+		<index id="1" index="c2c" type="product" name="product_index"
+			preIndex="true" _id="id">
+			<fields>
+				<field name="id" type="integer" index="not_analyzed" store="yes" />
+				<field name="shopId" index="not_analyzed" />
+				<field name="goodsNum" index="not_analyzed" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="originalPrice" type="integer" index="not_analyzed" />
+				<field name="counterPrice" type="integer" index="not_analyzed" />
+				<field name="price" type="integer" index="not_analyzed" />
+				<field name="discountPrice" type="integer" index="not_analyzed" />
+				<field name="amount" type="integer" index="not_analyzed" />
+				<field name="status" type="integer" index="not_analyzed" />
+				<field name="sales" type="integer" index="not_analyzed" />
+				<field name="imgUrl" index="not_analyzed" />
+				<field name="onsaleAt" type="date" index="not_analyzed" />
+				<field name="instockAt" type="date" index="not_analyzed" />
+				<field name="forsaleAt" type="date" index="not_analyzed" />
+				<field name="createdAt" type="date" index="not_analyzed" />
+				<field name="updatedAt" type="date" index="not_analyzed" />
+				<field name="archive" type="boolean" index="not_analyzed" />
+				<field name="domain" type="integer" index="not_analyzed" />
+				<field name="categoriesId" index="not_analyzed" />
+				<field name="attributesId" index="not_analyzed" />
+				<field name="tagsId" index="not_analyzed" />
+				<field name="categoriesName" index="not_analyzed" />
+				<field name="attributesName" index="not_analyzed" />
+				<field name="tagName" index="not_analyzed" />
+				<field name="categoriesIdNameParentId" index="not_analyzed" />
+				<field name="attributesIdNameParentId" index="not_analyzed" />
+				<field name="tagsIdNameParentId" index="not_analyzed" />
+				<field name="attributeValuesIdNameParentId" index="not_analyzed" />
+				<field name="recommend" index="not_analyzed" />
+				<field name="sortField" type="double" index="not_analyzed" />
+				<field name="logisticsFee" type="integer" index="not_analyzed" />
+			</fields>
+		</index>
+	</indexes>
+</definition>

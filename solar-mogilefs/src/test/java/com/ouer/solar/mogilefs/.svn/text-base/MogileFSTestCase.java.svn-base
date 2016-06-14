@@ -1,0 +1,43 @@
+package com.yylc.common.test.mogilefs;
+
+import java.io.InputStream;
+import java.util.Map;
+
+import com.google.common.collect.Maps;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.yylc.common.module.AppDomainModule;
+import com.yylc.common.module.MogileFSModule;
+import com.yylc.common.mogilefs.MogileException;
+import com.yylc.common.mogilefs.MogileFS;
+
+/**
+ *
+ * @author chenxi
+ */
+
+public class MogileFSTestCase {
+
+	/**
+	 * @param args
+	 * @throws MogileException 
+	 */
+	public static void main(String[] args) throws MogileException {
+		Injector injector = Guice.createInjector(new AppDomainModule(), new MogileFSModule());
+		MogileFS mogilefs = injector.getInstance(MogileFS.class);
+		InputStream resource = Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream("test.txt");
+		mogilefs.storeFile("test_txt", "authcard", resource);
+		
+		Map<String, InputStream> streams = Maps.newHashMap();
+		streams.put("bank_0.jpg", Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream("bank_0.jpg"));
+		streams.put("bank_1.jpg", Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream("bank_1.jpg"));
+		mogilefs.storeFiles(streams, "authcard");
+	}
+
+}

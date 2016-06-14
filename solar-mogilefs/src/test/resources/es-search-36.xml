@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+	<filterfields id="1" name="filter-domain">
+	   	<field name="attributesId" filterType="in"/>
+		<field name="categoriesId" filterType="in"/>
+		<field name="tagsId" filterType="in"/>
+	   	<field name="domain" filterType="term"/>
+	   	<field name="logisticsFee" filterType="term"/>
+	   	<field name="shopId" filterType="term"/>
+	   	<field name="status" filterType="term"/>
+	</filterfields>
+	
+	<searchfields id="1" name="search-title">
+		<field name="name" boost="3.0" boolType="should" queryType="match" />
+		<field name="subName" boost="2.0" boolType="should" queryType="match"/>
+	</searchfields>
+	
+	<searchfields id="2" name="search-all">
+		<field name="name" boost="100.0" boolType="should" queryType="match" />
+		<field name="subName" boost="50.0" boolType="should" queryType="match" />
+		<field name="categoriesName" boolType="should" queryType="term" boost="10.0" constantScore="true"/>
+		<field name="tagsName" boolType="should" queryType="term" boost="5.0" constantScore="true"/>
+		<field name="attributesName" boolType="should" queryType="term" boost="1.0" constantScore="true"/>
+	</searchfields>
+	<!-- 多关键字 同一属性之间是与关系 -->
+	<searchfields id="3" name="search-multi">
+		<field name="name" boost="100.0" boolType="should" queryType="match" multiType="must"/>
+		<field name="subName" boost="50.0" boolType="should" queryType="match" multiType="must"/>
+		<field name="categoriesName" boolType="should" queryType="term" boost="10.0" multiType="must"/>
+		<field name="tagsName" boolType="should" queryType="term" boost="5.0" multiType="must"/>
+		<field name="attributesName" boolType="should" queryType="term" boost="1.0" multiType="must"/>
+	</searchfields>
+	
+	
+	<sorts id="1" name="sort-price-desc">
+		<sort name="price" order="desc" />
+	</sorts>
+	
+	<sorts id="2" name="sort-price-asc">
+		<sort name="price" order="asc" />
+	</sorts>
+	<sorts id="3" name="sort-instockAt-desc">
+		<sort name="instockAt" order="desc" />
+	</sorts>
+	<sorts id="4" name="sort-sales-desc">
+		<sort name="sales" order="desc" />
+	</sorts>
+	<sorts id="5" name="sort-recommend-default-desc">
+		<sort name="recommend" order="desc" />
+	</sorts>
+	<sorts id="7" name="createdAt-desc">
+		<sort name="createdAt" order="desc" />
+	</sorts>
+	
+	<sorts id="8" name="sort-recommend-price-desc">
+		<sort name="recommend" order="desc" />
+		<sort name="price" order="desc" />
+	</sorts>
+	
+	<sorts id="9" name="sort-recommend-price-asc">
+		<sort name="recommend" order="desc" />
+		<sort name="price" order="asc" />
+	</sorts>
+	<sorts id="10" name="sort-recommend-instockAt-desc">
+		<sort name="recommend" order="desc" />
+		<sort name="instockAt" order="desc" />
+	</sorts>
+	<sorts id="11" name="sort-recommend-sales-desc">
+		<sort name="recommend" order="desc" />
+		<sort name="sales" order="desc" />
+	</sorts>
+	<sorts id="12" name="sort-recommend-createdAt-desc">
+		<sort name="recommend" order="desc" />
+		<sort name="createdAt" order="desc" />
+	</sorts>
+	<!-- modifier @see FieldValueFactorFunction.Modifier eg:LOG，LOG1P，LOG2P，LN，LN1P，LN2P，SQUARE，SQRT  -->
+	<scoreField id="1" name="sortField" factor="0.2" modifier="LOG1P"/>
+	
+	<scoreField id="2" name="recommend" factor="0.5" modifier="LOG1P"/>
+	
+	<aggregations id="1" name="cates-tags-attrs">
+		<aggregation type="terms" name="categories-term" field="categoriesIdNameParentId" />
+		<aggregation type="terms" name="tags-term" field="tagsIdNameParentId" />
+		<aggregation type="terms" name="attributes-term" field="attributesIdNameParentId" />
+		<aggregation type="terms" name="attributeValues-term" field="attributeValuesIdNameParentId" />
+	</aggregations>
+	
+	<aggregations id="2" name="status">
+		<aggregation type="terms" name="status-term" field="status" />
+	</aggregations>
+	
+	<aggregations id="3" name="cates-only">
+		<aggregation type="terms" name="categories-term" field="categoriesIdNameParentId" />
+	</aggregations>
+	
+</definition>

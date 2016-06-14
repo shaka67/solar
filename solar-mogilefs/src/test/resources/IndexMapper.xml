@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.search.dal.IndexMapper">
+  
+	<resultMap id="product" type="com.ouer.solar.search.common.KeyableMap">
+		<id column="id" property="id"  />
+		<id column="shop_id" property="shopId" />
+		<id column="goods_num" property="goodsNum" />
+		<id column="name" property="name" />
+		<id column="sub_name" property="subName" />
+		<id column="original_price" property="originalPrice" />
+		<id column="counter_price" property="counterPrice" />
+		<id column="price" property="price" />
+		<id column="amount" property="amount" />
+		<id column="status" property="status" />
+		<id column="sales" property="sales" />
+		<id column="img_url" property="imgUrl" />
+		<id column="onsale_at" property="onsaleAt" />
+		<id column="instock_at" property="instockAt" />
+		<id column="forsale_at" property="forsaleAt" />
+		<id column="created_at" property="createdAt" />
+		<id column="updated_at" property="updatedAt" />
+		<id column="archive" property="archive" />
+		<id column="domain" property="domain" />
+		<id column="sort_field" property="sortField"/>
+		<id column="price" property="discountPrice"/>
+		<association property="logisticsFee" column="id" select="logistics_fee" />
+		<association property="recommend" column="id" select="getRecommendById"></association>
+<!-- 		<collection property="skus" column="id" select="getSkus"> -->
+<!-- 		</collection> -->
+		<collection property="categoriesIdNameParentId" column="id" select="getCategoriesIdNameParentIdById">
+		</collection>
+		<collection property="tagsIdNameParentId" column="id" select="getTagsIdNameParentIdById">
+		</collection>
+		<collection property="attributesIdNameParentId" column="id" select="getAttributesIdNameParentIdById">
+		</collection>
+		<collection property="attributeValuesIdNameParentId" column="id" select="getAttributeValuesIdNameParentIdById">
+		</collection>
+		<collection property="categoriesId" column="id" select="getCategoriesIdById">
+		</collection>
+		<collection property="tagsId" column="id" select="getTagsIdById">
+		</collection>
+		<collection property="attributesId" column="id" select="getAttributesIdById">
+		</collection>
+		<collection property="categoriesName" column="id" select="getCategoriesNameById">
+		</collection>
+		<collection property="tagsName" column="id" select="getTagsNameById">
+		</collection>
+		<collection property="attributesName" column="id" select="getAttributesNameById">
+		</collection>
+	</resultMap>
+	
+	<resultMap id="product_sku" type="com.ouer.solar.search.common.KeyableMap">
+		<id column="id" property="id"  />
+		<id column="shop_id" property="shopId" />
+		<id column="product_goods_num" property="productGoodsNum" />
+		<id column="name" property="name" />
+		<id column="sub_name" property="subName" />
+		<id column="product_original_price" property="productOriginalPrice" />
+		<id column="product_counter_price" property="productCounterPrice" />
+		<id column="product_price" property="productPrice" />
+		<id column="product_amount" property="productAmount" />
+		<id column="status" property="status" />
+		<id column="product_sales" property="productSales" />
+		<id column="product_img_url" property="productImgUrl" />
+		<id column="product_onsale_at" property="productOnsaleAt" />
+		<id column="product_instock_at" property="productInstockAt" />
+		<id column="product_forsale_at" property="productForsaleAt" />
+		<id column="product_created_at" property="productCreatedAt" />
+		<id column="product_updated_at" property="productUpdatedAt" />
+		<id column="product_archive" property="productArchive" />
+		<id column="domain" property="domain" />
+		<id column="sort_field" property="sortField"/>
+		<id column="product_id" property="productId"  />
+		<id column="spec" property="spec" />
+		<id column="original_price" property="originalPrice" />
+		<id column="counter_price" property="counterPrice" />
+		<id column="price" property="price" />
+		<id column="price" property="discountPrice"/>
+		<id column="amount" property="amount" />
+		<id column="sales" property="sales" />
+		<id column="img_id" property="imgId" />
+		<id column="img_url" property="imgUrl" />
+		<id column="sort" property="sort" />
+		<id column="created_at" property="createdAt" />
+		<id column="updated_at" property="updatedAt" />
+		<id column="archive" property="archive" />
+		<association property="logisticsFee" column="product_id" select="logistics_fee" />
+		<association property="recommend" column="product_id" select="getRecommendById"></association>
+<!-- 		<collection property="skus" column="id" select="getSkus"> -->
+<!-- 		</collection> -->
+		<collection property="categoriesIdNameParentId" column="product_id" select="getCategoriesIdNameParentIdById">
+		</collection>
+		<collection property="tagsIdNameParentId" column="product_id" select="getTagsIdNameParentIdById">
+		</collection>
+		<collection property="attributesIdNameParentId" column="product_id" select="getAttributesIdNameParentIdById">
+		</collection>
+		<collection property="attributeValuesIdNameParentId" column="product_id" select="getAttributeValuesIdNameParentIdById">
+		</collection>
+		<collection property="categoriesId" column="product_id" select="getCategoriesIdById">
+		</collection>
+		<collection property="tagsId" column="product_id" select="getTagsIdById">
+		</collection>
+		<collection property="attributesId" column="product_id" select="getAttributesIdById">
+		</collection>
+		
+		<collection property="categoriesName" column="product_id" select="getCategoriesNameById">
+		</collection>
+		<collection property="tagsName" column="product_id" select="getTagsNameById">
+		</collection>
+		<collection property="attributesName" column="product_id" select="getAttributesNameById">
+		</collection>
+	</resultMap>
+
+	<resultMap id="sku" type="com.ouer.solar.search.common.KeyableMap" >
+		<id column="id" property="id"  />
+		<id column="product_id" property="productId" />
+		<id column="spec" property="spec" />
+		<id column="original_price" property="originalPrice" />
+		<id column="counter_price" property="counterPrice" />
+		<id column="price" property="price" />
+		<id column="amount" property="amount" />
+		<id column="sales" property="sales" />
+		<id column="img_id" property="imgId" />
+		<id column="img_url" property="imgUrl" />
+		<id column="sort" property="sort" />
+		<id column="created_at" property="createdAt" />
+		<id column="updated_at" property="updatedAt" />
+		<id column="archive" property="archive" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	    a.id,a.shop_id,a.goods_num,a.name,a.sub_name, a.original_price,a.counter_price, a.price, a.amount,
+		a.status,a.sales,a.img_url,UNIX_TIMESTAMP(a.onsale_at) onsale_at, UNIX_TIMESTAMP(a.instock_at) instock_at,
+		UNIX_TIMESTAMP(a.forsale_at) forsale_at,UNIX_TIMESTAMP(a.created_at) created_at,UNIX_TIMESTAMP(a.updated_at) updated_at,
+		a.archive, a.domain,ifnull(UNIX_TIMESTAMP(a.created_at),0)*0.05+ifnull(UNIX_TIMESTAMP(a.onsale_at),0)*0.2+ifnull(b.cnt_imgs,0)*0.5+ifnull(a.amount,0)*0.7+ifnull(c.cnt_tag,0)*0.1+ifnull(a.sales,0)*0.5 sort_field
+  	</sql>
+  	
+  	<sql id="Base_Column_List_Sku" >
+	    d.id, d.product_id,d.spec,d.original_price,d.counter_price ,
+	    d.price ,d.amount ,d.sales,d.img_url ,d.sort ,
+	    UNIX_TIMESTAMP(d.created_at) created_at , UNIX_TIMESTAMP(d.updated_at) updated_at ,d.archive ,a.shop_id,a.goods_num product_goods_num,
+	    a.name , a.sub_name , a.original_price product_original_price,a.counter_price  product_counter_price,
+	    a.price  product_price, a.amount product_amount,a.status status, a.sales product_sales,
+	    a.img_url product_img_url,UNIX_TIMESTAMP(a.onsale_at) product_onsale_at,UNIX_TIMESTAMP(a.instock_at) product_instock_at,
+	    UNIX_TIMESTAMP(a.forsale_at) product_forsale_at,UNIX_TIMESTAMP(a.created_at) product_created_at,
+	    UNIX_TIMESTAMP(a.updated_at) product_updated_at,a.archive product_archive, a.domain  domain,
+	    IFNULL(UNIX_TIMESTAMP(a.created_at), 0) * 0.05 + IFNULL(UNIX_TIMESTAMP(a.onsale_at), 0) * 0.2 
+	    + IFNULL(b.cnt_imgs, 0) * 0.7 +ifnull(d.amount,0)*0.7+ IFNULL(c.cnt_tag, 0) * 0.1 + 
+	    IFNULL(a.sales, 0) * 0.5 sort_field
+  	</sql>
+	
+	<select id="getRecommendById" resultType="boolean">
+        select if(t2.id,1,0) recommend from prod_product t1 left join prod_recommend t2 on t1.id = t2.product_id 
+        where t1.id=#{value} and t1.archive=0  and t2.archive=0
+    </select>
+    
+    <select id="getDataList_product" resultMap="product">
+        SELECT 
+		     <include refid="Base_Column_List" />
+		FROM
+		    prod_product a
+		        LEFT JOIN
+		    (SELECT 
+		        object_id, COUNT(object_id) cnt_imgs
+		    FROM
+		        prod_image
+		    WHERE
+		        type = 1
+		    GROUP BY object_id) b ON a.id = b.object_id
+		        LEFT JOIN
+		    (SELECT 
+		        t1.obj_id, COUNT(*) cnt_tag
+		    FROM
+		        common_term_relationships t1
+		    JOIN common_category t2 ON t2.id = t1.category_id
+		    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+		    WHERE
+		        t1.obj_type = 'product'
+		            AND t3.name = 'tag'
+		    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+		WHERE
+		    a.archive = 0 
+		    and a.status = 1
+        <include refid="condition_product" />
+    </select>
+    
+	<select id="getDataListByIds_product" resultMap="product">
+		SELECT 
+		     <include refid="Base_Column_List" />
+		FROM
+		    prod_product a
+		        LEFT JOIN
+		    (SELECT 
+		        object_id, COUNT(object_id) cnt_imgs
+		        
+		    FROM
+		        prod_image
+		    WHERE
+		        type = 1
+		    GROUP BY object_id) b ON a.id = b.object_id
+		        LEFT JOIN
+		    (SELECT 
+		        t1.obj_id, COUNT(*) cnt_tag
+		    FROM
+		        common_term_relationships t1
+		    JOIN common_category t2 ON t2.id = t1.category_id
+		    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+		    WHERE
+		        t1.obj_type = 'product'
+		            AND t3.name = 'tag'
+		    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+		WHERE
+		    a.archive = 0 
+		    and a.status = 1
+        <include refid="idIn_product" />
+	</select>
+	
+	<select id="count_product" resultType="int">
+		select count(*) from
+		    prod_product a
+		        LEFT JOIN
+		    (SELECT 
+		        object_id, COUNT(object_id) cnt_imgs
+		    FROM
+		        prod_image
+		    WHERE
+		        type = 1
+		    GROUP BY object_id) b ON a.id = b.object_id
+		        LEFT JOIN
+		    (SELECT 
+		        t1.obj_id, COUNT(*) cnt_tag
+		    FROM
+		        common_term_relationships t1
+		    JOIN common_category t2 ON t2.id = t1.category_id
+		    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+		    WHERE
+		        t1.obj_type = 'product'
+		            AND t3.name = 'tag'
+		    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+		WHERE
+		    a.archive = 0 
+		    and a.status = 1
+	</select>
+
+	<select id="maxIdByMod_product" resultType="int">
+		select id from prod_product p where 1=1
+		<if test="baseMod>0">
+			and id%#{baseMod}=#{mod}
+		</if>
+		order by id desc limit 1
+	</select>
+
+	<sql id="condition_product">
+		and a.id between #{id}+1 and #{id}+#{batchSize}
+		<if test="baseMod>0">
+			and a.id%#{baseMod}=#{mod}
+		</if>
+		order by id
+	</sql>
+	
+	<sql id="condition_product_sku">
+		and d.id between #{id}+1 and #{id}+#{batchSize}
+		<if test="baseMod>0">
+			and d.id%#{baseMod}=#{mod}
+		</if>
+		order by d.id
+	</sql>
+	  
+    <sql id="idIn_product">
+		and a.id in
+		<foreach collection="list" item="id" index="index" open="("
+			separator="," close=")">
+			#{id}
+		</foreach>
+	</sql>
+	
+	<sql id="idIn_product_sku">
+		and d.id in
+		<foreach collection="list" item="id" index="index" open="("
+			separator="," close=")">
+			#{id}
+		</foreach>
+	</sql>
+	
+<!-- 	<select id="getTermsById" resultType="string"> -->
+<!-- 		select t.name from -->
+<!-- 		prod_product p,common_term_relationships pt,common_term t -->
+<!-- 		where p.id=pt.obj_id and -->
+<!-- 		t.id=pt.category_id and p.id=#{value} -->
+<!-- 	</select> -->
+	
+	<select id="getCategoriesIdById" resultType="string">
+		select cc.`id` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=1 and p.id=#{value} 
+		and  cc.archive = 0 and  pt.archive = 0
+	</select>
+	
+	<select id="getTagsIdById" resultType="string">
+		select cc.`id` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=3 and p.id=#{value}
+		 and  cc.archive = 0 and  pt.archive = 0 
+	</select>
+	
+	<select id="getAttributesIdById" resultType="string">
+		select cc.`id` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=2 and p.id=#{value} 
+		and  cc.archive = 0 and  pt.archive = 0 
+	</select>
+	
+	<select id="getCategoriesNameById" resultType="string">
+		select cc.`name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=1 and p.id=#{value} 
+		and  cc.archive = 0 and  pt.archive = 0 
+	</select>
+	
+	<select id="getTagsNameById" resultType="string">
+		select cc.`name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=3 and p.id=#{value} 
+		and  cc.archive = 0 and  pt.archive = 0 
+	</select>
+	
+	<select id="getAttributesNameById" resultType="string">
+		select cc.`name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=2 and p.id=#{value} 
+		and  cc.archive = 0 and  pt.archive = 0 
+	</select>
+	
+	
+	<select id="getCategoriesIdNameParentIdById" resultType="string">
+		select CONCAT(CAST(cc.`id` AS CHAR),'_',cc.`parent_id`,'_',ifnull(cc.`sorts`,'0'),'_', cc.`name`) `id-name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=1 and p.id=#{value} and  cc.archive = 0  and  pt.archive = 0
+	</select>
+	
+	<select id="getTagsIdNameParentIdById" resultType="string">
+		select CONCAT(CAST(cc.`id` AS CHAR),'_',cc.`parent_id`,'_',ifnull(cc.`sorts`,'0'),'_', cc.`name`) `id-name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=3 and p.id=#{value} and  cc.archive = 0  and  pt.archive = 0
+	</select>
+	
+	<select id="getAttributeValuesIdNameParentIdById" resultType="string">
+		select CONCAT(CAST(cc.`id` AS CHAR),'_',cc.`parent_id`,'_',ifnull(cc.`sorts`,'0'),'_', cc.`name`) `id-name` from prod_product p,common_term_relationships pt, common_category cc 
+		where p.id = pt.obj_id and pt.category_id=cc.id and cc.taxonomy_id=2 and p.id=#{value} and  cc.archive = 0  and  pt.archive = 0
+	</select>
+	
+	<select id="getAttributesIdNameParentIdById" resultType="string">
+		SELECT 
+		    CONCAT(CAST(cc.`id` AS CHAR),'_',cc.`parent_id`,'_',ifnull(cc.`sorts`,'0'),'_', cc.`name`) `id-name`
+		FROM
+		    prod_product p,
+		    common_term_relationships pt,
+		    common_category cc1 ,
+		    common_category cc
+		WHERE
+		    p.id = pt.obj_id
+		        AND pt.category_id = cc1.id
+		        AND cc1.taxonomy_id = 2
+		        AND cc1.archive = 0
+		        AND pt.archive = 0
+		        AND cc1.parent_id = cc.id
+		        AND p.id=#{value} 
+	</select>
+	
+	<select id="getDataList_product_sku" resultMap="product_sku">
+        SELECT 
+		      <include refid="Base_Column_List_Sku" />
+		FROM
+			prod_sku d
+			join 
+		    prod_product a 
+		    on a.id = d.product_id
+		        LEFT JOIN
+		    (SELECT 
+		        object_id, COUNT(object_id) cnt_imgs
+		    FROM
+		        prod_image
+		    WHERE
+		        type = 1
+		    GROUP BY object_id) b ON a.id = b.object_id
+		        LEFT JOIN
+		    (SELECT 
+		        t1.obj_id, COUNT(*) cnt_tag
+		    FROM
+		        common_term_relationships t1
+		    JOIN common_category t2 ON t2.id = t1.category_id
+		    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+		    WHERE
+		        t1.obj_type = 'product'
+		            AND t3.name = 'tag'
+		    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+		WHERE
+		    a.archive = 0 
+		    and a.status = 1
+        <include refid="condition_product_sku" />
+    </select>
+
+	<select id="getDataListByIds_product_sku" resultMap="product_sku">
+			SELECT 
+			     <include refid="Base_Column_List_Sku" />
+			FROM
+				prod_sku d
+					join 
+			    prod_product a on a.id = d.product_id
+			        LEFT JOIN
+			    (SELECT 
+			        object_id, COUNT(object_id) cnt_imgs
+			    FROM
+			        prod_image
+			    WHERE
+			        type = 1
+			    GROUP BY object_id) b ON a.id = b.object_id
+			        LEFT JOIN
+			    (SELECT 
+			        t1.obj_id, COUNT(*) cnt_tag
+			    FROM
+			        common_term_relationships t1
+			    JOIN common_category t2 ON t2.id = t1.category_id
+			    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+			    WHERE
+			        t1.obj_type = 'product'
+			            AND t3.name = 'tag'
+			    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+			WHERE
+			a.archive = 0 
+		    and a.status = 1
+	        <include refid="idIn_product_sku" />
+		</select>
+		
+		<select id="count_product_sku" resultType="int">
+			select count(*) from prod_sku d
+			join 
+		    prod_product a 
+		    on a.id = d.product_id
+		        LEFT JOIN
+		    (SELECT 
+		        object_id, COUNT(object_id) cnt_imgs
+		    FROM
+		        prod_image
+		    WHERE
+		        type = 1
+		    GROUP BY object_id) b ON a.id = b.object_id
+		        LEFT JOIN
+		    (SELECT 
+		        t1.obj_id, COUNT(*) cnt_tag
+		    FROM
+		        common_term_relationships t1
+		    JOIN common_category t2 ON t2.id = t1.category_id
+		    JOIN common_taxonomies t3 ON t2.taxonomy_id = t3.id
+		    WHERE
+		        t1.obj_type = 'product'
+		            AND t3.name = 'tag'
+		    GROUP BY t1.obj_id) c ON a.id = c.obj_id
+		WHERE
+		    a.archive = 0 
+		    and a.status = 1
+		</select>
+		<select id="maxIdByMod_product_sku" resultType="int">
+			select d.id from prod_sku d	join prod_product a on a.id = d.product_id where 1=1
+			<if test="baseMod>0">
+				and d.id%#{baseMod}=#{mod}
+			</if>
+			order by d.id desc limit 1
+		</select>
+		<!-- 1.邮费模板-商品选择了定额模板，且定额模板设置金额为0 
+ 			 2.邮费模板-商品选择了满金额包邮模板，且设置金额为0
+ 			 3. 邮费模板-商品选择了满数量包邮模板，且设置数量为0-->
+		<select id="logistics_fee" resultType="int">
+			SELECT 
+			    IF(MIN(IFNULL(logistics_fee, 2)) = 0,
+			        1,
+			        0)
+			FROM
+			    prod_product t1
+			        LEFT JOIN
+			    (SELECT 
+			        c.logistics_fee, a.id
+			    FROM
+			        prod_product a, prod_logistics_template b, shop_logistics_template c
+			    WHERE
+			        b.template_id = c.id
+			            AND b.product_id = a.id
+			            AND a.domain = c.domain
+			            AND a.shop_id = c.shop_id
+			            AND c.type = 1
+			            and b.archive=0
+        				and c.archive=0
+			            AND c.logistics_fee = 0
+			            AND a.id = #{value} 
+                        UNION SELECT 
+			        logistics_fee, a.id
+			    FROM
+			        prod_product a, prod_logistics_template b, shop_logistics_template c
+			    WHERE
+			        b.template_id = c.id
+			            AND b.product_id = a.id
+			            AND c.type = 3
+			            and b.archive=0
+        				and c.archive=0
+			            AND a.id =  #{value}
+			            AND c.full_fee = 0
+                         UNION SELECT 
+			        0 logistics_fee, a.id
+			    FROM
+			        prod_product a, prod_logistics_template b, shop_logistics_template c
+			    WHERE
+			        b.template_id = c.id
+			            AND b.product_id = a.id
+			            AND c.type = 4
+			             and b.archive=0
+        				and c.archive=0
+			            AND a.id =  #{value}
+			            AND c.full_amount = 1) t3 ON t1.id = t3.id
+			WHERE
+			    t1.id =  #{value}
+		</select>
+</mapper>

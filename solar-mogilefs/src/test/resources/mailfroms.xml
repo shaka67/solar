@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mailfroms max="100" selector="com.ouer.solar.mail.server.selector.SingleSelector" personal="">
+
+	<group type="1" name="qf" max="500" loadbalancer="ROUND_ROBIN">
+    	<member mail="no-reply@ixiaopu.com" pwd="bm9yZXBseUAyMDE1"/>
+    </group>
+<!--     <group type="1" name="product" max="200"> -->
+<!--     	<member mail="product.qf@ixiaopu.com" pwd="bm9yZXBseUAyMDE1" max="500"/> -->
+<!--     	<member mail="product1.qf@ixiaopu.com" pwd="" /> -->
+<!--     	<member mail="product2.qf@ixiaopu.com" pwd="" /> -->
+<!--     </group> -->
+
+<!-- 	<group type="2" name="trade"> -->
+<!--     	<member mail="trade.qf@ixiaopu.com" pwd="bm9yZXBseUAyMDE1" max="500"/> -->
+<!--     	<member mail="trade1.qf@ixiaopu.com" pwd="" /> -->
+<!--     	<member mail="trade2.qf@ixiaopu.com" pwd="" /> -->
+<!--     </group> -->
+    
+<!--     <group type="3" name="pay"> -->
+<!--     	<member mail="trade.qf@ixiaopu.com" pwd="bm9yZXBseUAyMDE1" max="500"/> -->
+<!--     	<member mail=""pay"1.qf@ixiaopu.com" pwd="" /> -->
+<!--     	<member mail=""pay"2.qf@ixiaopu.com" pwd="" /> -->
+<!--     </group> -->
+</mailfroms>

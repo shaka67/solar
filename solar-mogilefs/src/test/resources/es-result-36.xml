@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition>
+    <results>        
+        <result id="1" indexId="1" name="product_all">
+            <fields>
+            	<field name="id" />
+				<field name="shopId" />
+				<field name="goodsNum" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="originalPrice" />
+				<field name="counterPrice" />
+				<field name="price" />
+				<field name="amount" />
+				<field name="status" />
+				<field name="sales" />
+				<field name="imgUrl" />
+				<field name="onsaleAt" />
+				<field name="instockAt" />
+				<field name="forsaleAt" />
+				<field name="createdAt" />
+				<field name="updatedAt" />
+				<field name="archive" />
+				<field name="domain" />
+				<field name="recommend" />
+				<field name="categoriesName" />
+				<field name="categoriesId" />
+				<field name="tagsName" />
+				<field name="tagsId" />
+				<field name="attributesName"/>
+				<field name="attributesId"/>
+				<field name="categoriesIdNameParentId" />
+				<field name="tagsIdNameParentId" />
+				<field name="attributesIdNameParentId"/>
+				<field name="attributeValuesIdNameParentId"/>
+				<field name="sortField"/>
+				<field name="logisticsFee"/>
+				<field name="discountPrice"/>
+            </fields>
+        </result>
+        
+         <result id="2" indexId="2" name="product_sku_all">
+            <fields>
+            	<field name="id" />
+				<field name="shopId" />
+				<field name="productGoodsNum" />
+				<field name="name" />
+				<field name="subName" />
+				<field name="productOriginalPrice" />
+				<field name="productCounterPrice" />
+				<field name="productPrice" />
+				<field name="productAmount" />
+				<field name="status" />
+				<field name="productSales" />
+				<field name="productImgUrl" />
+				<field name="productOnsaleAt" />
+				<field name="productInstockAt" />
+				<field name="productForsaleAt" />
+				<field name="productCreatedAt" />
+				<field name="productUpdatedAt" />
+				<field name="productArchive" />
+				<field name="domain" />
+				<field name="recommend" />
+				<field name="categoriesName" />
+				<field name="categoriesId" />
+				<field name="tagsName" />
+				<field name="tagsId" />
+				<field name="attributesName"/>
+				<field name="attributesId"/>
+				<field name="categoriesIdNameParentId" />
+				<field name="tagsIdNameParentId" />
+				<field name="attributesIdNameParentId"/>
+				<field name="attributeValuesIdNameParentId"/>
+				<field name="productId" />
+				<field name="spec" />
+				<field name="originalPrice" />
+				<field name="counterPrice" />
+				<field name="price" />
+				<field name="amount" />
+				<field name="sales" />
+				<field name="imgUrl" />
+				<field name="sort" />
+				<field name="createdAt" />
+				<field name="updatedAt" />
+				<field name="archive" />
+				<field name="sortField"/>
+				<field name="logisticsFee"/>
+				<field name="discountPrice"/>
+            </fields>
+        </result>
+    </results>
+</definition>

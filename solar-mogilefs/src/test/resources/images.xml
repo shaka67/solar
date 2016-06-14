@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+    <definitions>
+    	<definition type="1" name="PRODUCT" bucket="xaya" key="auto" />
+    	<definition type="2" name="OTHER" bucket="kk-other" key="auto" />
+    </definitions>
+
+	<retrieves>
+		<retrieve type="1" name="200*200" definition="1" mode="min-cut" width="200" height="200"/>
+		<retrieve type="2" name="original" definition="1" />
+	</retrieves>
+</images>
