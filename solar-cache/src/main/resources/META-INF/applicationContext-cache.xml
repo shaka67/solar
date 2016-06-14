@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+<!-- 	<bean id="redisConfig" class="com.ouer.solar.cache.shared.RedisConfig" >   -->
+<!-- 		<property name="host" value="${redis.host}" /> -->
+<!-- 		<property name="port" value="${redis.port}" /> -->
+<!-- 		<property name="timeout" value="${redis.timeout}" /> -->
+<!-- 		<property name="database" value="${redis.database}" /> -->
+<!-- 		<property name="password"> -->
+<!-- 			<value><![CDATA[${redis.password}]]></value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"> -->
+<!-- 		<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}" /> -->
+<!-- 		<property name="maxIdle" value="${redis.maxIdle}" /> -->
+<!-- 		<property name="minIdle" value="${redis.minIdle}" /> -->
+<!-- 		<property name="maxTotal" value="${redis.maxTotal}" /> -->
+<!-- 		<property name="maxWaitMillis" value="${redis.maxWaitMillis}" /> -->
+<!-- 		<property name="testWhileIdle" value="${redis.testWhileIdle}" /> -->
+<!-- 		<property name="testOnBorrow" value="${redis.testOnBorrow}" /> -->
+<!-- 		<property name="testOnReturn" value="${redis.testOnReturn}" /> -->
+<!-- 		<property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" /> -->
+<!-- 		<property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" /> -->
+<!-- 		<property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}" /> -->
+<!-- 		<property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" /> -->
+<!-- 		<property name="lifo" value="${redis.lifo}" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="shardedRedisConfig" class="com.ouer.solar.cache.shared.ShardedRedisConfig" >   -->
+<!-- 		<property name="hosts" value="${shared.redis.hosts}" /> -->
+<!-- 		<property name="ports" value="${shared.redis.ports}" /> -->
+<!-- 		<property name="timeouts" value="${shared.redis.timeouts}" /> -->
+<!-- 		<property name="names" value="${shared.redis.names}" /> -->
+<!-- 	</bean> -->
+
+	<bean id="clusteredRedisConfig" class="com.ouer.solar.cache.shared.ClusteredRedisConfig" >
+		<property name="hostsAndPorts" value="${clustered.redis.hosts.ports}" />
+	</bean>
+	
+</beans>
