@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>solar-image-skeleton</artifactId>
+  <packaging>jar</packaging> 
+  <name>solar-image-skeleton</name>
+  
+  <parent>
+    <groupId>com.ouer</groupId>
+    <artifactId>solar-image</artifactId>
+    <version>2.0.0</version>
+  </parent>
+  
+  <properties>
+	<guice.version>3.0</guice.version>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-bus</artifactId>
+	</dependency>
+    <dependency>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-config</artifactId>
+	</dependency>
+	<dependency>
+      <groupId>org.im4java</groupId>
+      <artifactId>im4java</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+    <dependency>
+	  <groupId>commons-configuration</groupId>
+	  <artifactId>commons-configuration</artifactId>
+	  <version>1.10</version>
+	</dependency>
+    <dependency>
+    	<groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.8.3</version>
+    </dependency>
+  </dependencies>
+  
+  <distributionManagement>
+		<repository>
+			<id>qianfan-releases</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>qianfan-snapshots</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

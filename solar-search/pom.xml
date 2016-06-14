@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>solar-search</artifactId>
+	<packaging>pom</packaging> 
+	<name>solar-search</name>
+	
+	<parent>
+	    <groupId>com.ouer</groupId>
+	    <artifactId>solar-parent</artifactId>
+	    <version>2.0.0</version>
+  	</parent>
+	
+	<modules>
+		<module>solar-search-api</module>
+		<module>solar-search-common</module>
+		<module>solar-search-definition</module>
+		<module>solar-search-dal</module>
+		<module>solar-search-ibs</module>
+		<module>solar-search-rns</module>
+		<module>solar-search-rss</module>
+	</modules>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-definition</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-dal</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-ibs</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-rns</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ouer</groupId>
+				<artifactId>solar-search-rss</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>qianfan-releases</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>qianfan-snapshots</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

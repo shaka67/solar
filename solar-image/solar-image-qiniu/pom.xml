@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>solar-image-qiniu</artifactId>
+  <packaging>jar</packaging> 
+  <name>solar-image-qiniu</name>
+  
+  <parent>
+    <groupId>com.ouer</groupId>
+    <artifactId>solar-image</artifactId>
+    <version>2.0.0</version>
+  </parent>
+  
+  <dependencies>
+    <dependency>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-config</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-image-skeleton</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>com.qiniu</groupId>
+        <artifactId>qiniu-java-sdk</artifactId>
+        <version>[7.0.0, 7.0.99]</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpasyncclient</artifactId>
+	    <version>4.0</version>
+	</dependency>
+  </dependencies>
+  
+  <distributionManagement>
+		<repository>
+			<id>qianfan-releases</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>qianfan-snapshots</id>
+			<url>http://nexus.ixiaopu.com:8081/nexus/content/repositories/qianfan-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

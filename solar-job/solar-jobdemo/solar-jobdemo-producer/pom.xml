@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>solar-jobdemo-producer</artifactId>
+	<packaging>jar</packaging>
+	<name>solar-jobdemo-producer</name>
+
+	<parent>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-jobdemo</artifactId>
+		<version>2.0.0</version>
+	</parent>
+
+	<properties>
+		<deploy.directory>target</deploy.directory>
+		<deploy.final.name>${project.artifactId}-${project.version}</deploy.final.name>
+		<config.directory>src/main/resources</config.directory>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ouer</groupId>
+			<artifactId>solar-jobclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ouer</groupId>
+			<artifactId>solar-jobdemo-model</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${deploy.directory}/conf</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${config.directory}</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

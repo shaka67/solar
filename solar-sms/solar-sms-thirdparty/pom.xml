@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ouer</groupId>
+		<artifactId>solar-sms</artifactId>
+		<version>2.0.0</version>
+	</parent>
+
+	<artifactId>solar-sms-thirdparty</artifactId>
+	<packaging>jar</packaging>
+	<name>Solar sms - Thirdparty</name>
+
+	<properties>
+		<deploy.directory>target</deploy.directory>
+    	<deploy.final.name>${project.artifactId}-${project.version}</deploy.final.name>
+    	<source.directory>src/main/java</source.directory>
+    	<test.directory>src/test/java</test.directory>
+    	<config.directory>src/main/resources</config.directory>
+    	<script.directory>script</script.directory>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.ouer</groupId>
+			<artifactId>solar-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+	</dependencies>
+	
+</project>
