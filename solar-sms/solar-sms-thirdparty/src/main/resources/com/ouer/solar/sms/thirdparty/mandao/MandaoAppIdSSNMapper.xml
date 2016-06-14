@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouer.solar.sms.thirdparty.mandao.MandaoAppIdSSNMapper">
+	
+	<insert id="insert" parameterType="com.ouer.solar.sms.thirdparty.mandao.MandaoAppIdSsn"
+		useGeneratedKeys="true" keyProperty="id">
+		insert ignore into mandao_app_ssn (
+		app_id, special_service_number, created_at, updated_at
+		)
+		values (
+		#{appId}, #{ssn}, 
+		now(),
+		now()
+		)
+	</insert>
+	
+	<select id="selectAppId" resultType="string">
+		select app_id from mandao_app_ssn where special_service_number = #{specialServiceNumber}
+	</select>
+	
+	<select id="exists" resultType="boolean">
+    	<![CDATA[ select count(*)  from sms_config where app_id = #{appId} ]]>
+	</select> 
+	
+	<delete id="delete">
+    	delete from mandao_app_ssn where app_id = #{appId}
+  	</delete>
+</mapper>
