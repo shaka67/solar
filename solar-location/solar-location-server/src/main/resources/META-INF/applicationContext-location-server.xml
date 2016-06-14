@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://code.alibabatech.com/schema/dubbo 
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="false" default-autowire="byName">
+	
+<!-- 	<context:component-scan base-package="com.ouer.solar.location" />  -->
+	
+<!-- 	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper"> -->
+	<!--  
+        <property name="mappingFiles">
+            <list>
+                <value>dozer-mappings.xml</value>
+            </list>
+        </property>
+	-->
+<!--     </bean> -->
+	
+	<dubbo:application name="solar-location-server" owner="location" organization="solar"/>
+	
+	<dubbo:registry address="${service.registry.url}" timeout="30000"/>
+	
+	<dubbo:protocol name="dubbo" port="20882"/>
+	
+    <dubbo:service interface="com.ouer.solar.location.api.LocationApi" ref="locationService"  protocol="dubbo" timeout="50000" connections="2"/>
+    
+</beans>
